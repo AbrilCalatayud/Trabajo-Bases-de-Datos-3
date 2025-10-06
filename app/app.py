@@ -4,10 +4,19 @@ from flask import Flask, render_template, request, jsonify
 import requests
 from dotenv import load_dotenv
 
+# paths absolutos para que siempre encuentre templates/static
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+TEMPLATES_DIR = os.path.join(BASE_DIR, "templates")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
+
 load_dotenv()
 
 def create_app():
-    app = Flask(__name__)
+    app = Flask(
+        __name__,
+        template_folder=TEMPLATES_DIR,
+        static_folder=STATIC_DIR
+    )
 
     # === Config ===
     PORT = int(os.getenv("PORT", "5000"))
@@ -16,7 +25,7 @@ def create_app():
     SUCURSALES = [int(p.strip()) for p in peers_env.split(",") if p.strip().isdigit()]
     SUCURSALES = [p for p in SUCURSALES if p != PORT]
 
-    DATA_DIR = f"data_{PORT}"
+    DATA_DIR = os.path.join(os.path.dirname(BASE_DIR), f"data_{PORT}")
     EMP_FILE = os.path.join(DATA_DIR, f"empleados_{PORT}.json")
     LOG_FILE = os.path.join(DATA_DIR, f"historial_{PORT}.json")
     os.makedirs(DATA_DIR, exist_ok=True)
@@ -44,102 +53,102 @@ def create_app():
     def sincronizar_con_sucursales():
         for puerto in SUCURSALES:
             try:
-                r = requests.get(f"http://localhost:{puerto}/obtener_todo", timeout=2)
-                if r.status_code != 200: 
+                r = requests.get(f"http://127.0.0.1:{puerto}/obtener_todo", timeout=2)
+                if r.status_code != 200:
                     continue
-                datos_remotos = r.json()
-
-                empleados_locales = cargar_empleados()
-                for dni, emp_r in datos_remotos.get("empleados", {}).items():
-                    if dni not in empleados_locales:
-                        empleados_locales[dni] = emp_r
-                guardar_empleados(empleados_locales)
-
-                historial_local = cargar_historial()
-                for op in datos_remotos.get("historial", []):
-                    if op not in historial_local:
-                        historial_local.append(op)
-                historial_local.sort(key=lambda x: x["fecha"], reverse=True)
-                guardar_historial(historial_local)
+                datos = r.json()
+                # empleados
+                emp_local = cargar_empleados()
+                for dni, emp_r in datos.get("empleados", {}).items():
+                    if dni not in emp_local:
+                        emp_local[dni] = emp_r
+                guardar_empleados(emp_local)
+                # historial
+                hist_local = cargar_historial()
+                for op in datos.get("historial", []):
+                    if op not in hist_local:
+                        hist_local.append(op)
+                hist_local.sort(key=lambda x: x["fecha"], reverse=True)
+                guardar_historial(hist_local)
             except Exception as e:
                 print(f"[WARN] Peer {puerto} no disponible: {e}")
 
     # === Operaciones ===
-    def agregar_empleado(dni, nombre, apellido, puesto):
-        empleados = cargar_empleados()
-        if dni in empleados:
+    def op_agregar(dni, nombre, apellido, puesto):
+        emp = cargar_empleados()
+        if dni in emp:
             return False, "El empleado ya existe"
-        empleados[dni] = {
+        emp[dni] = {
             "dni": dni, "nombre": nombre, "apellido": apellido,
             "puesto": puesto, "sucursal": NODE_NAME
         }
-        historial = cargar_historial()
-        historial.append({
+        hist = cargar_historial()
+        hist.append({
             "tipo": "write", "dni": dni,
             "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "sucursal": NODE_NAME
         })
-        guardar_empleados(empleados)
-        guardar_historial(historial)
+        guardar_empleados(emp); guardar_historial(hist)
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
         return True, "Empleado agregado correctamente"
 
-    def editar_empleado(dni, nombre, apellido, puesto):
-        empleados = cargar_empleados()
-        if dni not in empleados:
+    def op_editar(dni, nombre, apellido, puesto):
+        emp = cargar_empleados()
+        if dni not in emp:
             return False, "El empleado no existe"
-        empleados[dni].update({"nombre": nombre, "apellido": apellido, "puesto": puesto})
-        historial = cargar_historial()
-        historial.append({
+        emp[dni].update({"nombre": nombre, "apellido": apellido, "puesto": puesto})
+        hist = cargar_historial()
+        hist.append({
             "tipo": "update", "dni": dni,
             "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "sucursal": NODE_NAME
         })
-        guardar_empleados(empleados)
-        guardar_historial(historial)
+        guardar_empleados(emp); guardar_historial(hist)
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
         return True, "Empleado editado correctamente"
 
-    def consultar_empleado(dni):
-        empleados = cargar_empleados()
-        if dni not in empleados:
+    def op_consultar(dni):
+        emp = cargar_empleados()
+        if dni not in emp:
             return None, "El empleado no existe"
-        historial = cargar_historial()
-        historial.append({
+        hist = cargar_historial()
+        hist.append({
             "tipo": "read", "dni": dni,
             "fecha": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "sucursal": NODE_NAME
         })
-        guardar_historial(historial)
+        guardar_historial(hist)
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
-        return empleados[dni], "Consulta exitosa"
+        return emp[dni], "Consulta exitosa"
 
     # === Rutas ===
-    @app.route("/")
+    @app.get("/")
     def index():
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
         return render_template("index.html", sucursal=NODE_NAME, puerto=PORT)
 
     @app.post("/agregar_empleado")
     def agregar_empleado_endpoint():
-        exito, mensaje = agregar_empleado(
-            request.form["dni"], request.form["nombre"], request.form["apellido"], request.form["puesto"]
+        ok, msg = op_agregar(
+            request.form["dni"], request.form["nombre"],
+            request.form["apellido"], request.form["puesto"]
         )
-        return jsonify({"exito": exito, "mensaje": mensaje})
+        return jsonify({"exito": ok, "mensaje": msg})
 
     @app.post("/editar_empleado")
     def editar_empleado_endpoint():
-        exito, mensaje = editar_empleado(
-            request.form["dni"], request.form["nombre"], request.form["apellido"], request.form["puesto"]
+        ok, msg = op_editar(
+            request.form["dni"], request.form["nombre"],
+            request.form["apellido"], request.form["puesto"]
         )
-        return jsonify({"exito": exito, "mensaje": mensaje})
+        return jsonify({"exito": ok, "mensaje": msg})
 
     @app.post("/consultar_empleado")
     def consultar_empleado_endpoint():
-        empleado, mensaje = consultar_empleado(request.form["dni"])
-        if empleado:
-            return jsonify({"exito": True, "mensaje": mensaje, "empleado": empleado})
-        return jsonify({"exito": False, "mensaje": mensaje})
+        emp, msg = op_consultar(request.form["dni"])
+        if emp:
+            return jsonify({"exito": True, "mensaje": msg, "empleado": emp})
+        return jsonify({"exito": False, "mensaje": msg})
 
     @app.get("/obtener_historial")
     def obtener_historial_endpoint():
@@ -151,15 +160,16 @@ def create_app():
 
     @app.get("/obtener_todo")
     def obtener_todo_endpoint():
-        return jsonify({"empleados": cargar_empleados(),"historial": cargar_historial()})
+        return jsonify({"empleados": cargar_empleados(), "historial": cargar_historial()})
 
     @app.get("/ver_historial")
     def ver_historial_endpoint():
         sincronizar_con_sucursales()
-        return jsonify({"empleados": cargar_empleados(),"historial": cargar_historial()})
+        return jsonify({"empleados": cargar_empleados(), "historial": cargar_historial()})
 
     _ensure()
     return app
+
 
 if __name__ == "__main__":
     app = create_app()

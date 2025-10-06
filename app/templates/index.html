@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistema de Empleados - {{ sucursal }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Sistema de Gestión de Empleados</h1>
+      <h2>{{ sucursal }} (Puerto: {{ puerto }})</h2>
+      <div class="status">
+        <span id="status-sync" class="sync-status">Sincronizando...</span>
+      </div>
+    </header>
+
+    <div class="sections">
+      <section class="form-section">
+        <h3>Agregar Empleado</h3>
+        <form id="form-agregar">
+          <input type="text" name="dni" placeholder="DNI" required>
+          <input type="text" name="nombre" placeholder="Nombre" required>
+          <input type="text" name="apellido" placeholder="Apellido" required>
+          <input type="text" name="puesto" placeholder="Puesto" required>
+          <button type="submit">Agregar Empleado</button>
+        </form>
+        <div id="resultado-agregar" class="resultado"></div>
+      </section>
+
+      <section class="form-section">
+        <h3>Editar Empleado</h3>
+        <form id="form-editar">
+          <input type="text" name="dni" placeholder="DNI" required>
+          <input type="text" name="nombre" placeholder="Nuevo Nombre" required>
+          <input type="text" name="apellido" placeholder="Nuevo Apellido" required>
+          <input type="text" name="puesto" placeholder="Nuevo Puesto" required>
+          <button type="submit">Editar Empleado</button>
+        </form>
+        <div id="resultado-editar" class="resultado"></div>
+      </section>
+
+      <section class="form-section">
+        <h3>Consultar Empleado</h3>
+        <form id="form-consultar">
+          <input type="text" name="dni" placeholder="DNI" required>
+          <button type="submit">Consultar Empleado</button>
+        </form>
+        <div id="resultado-consulta" class="resultado"></div>
+      </section>
+    </div>
+
+    <div class="actions">
+      <button id="btn-ver-historial">Ver Historial Completo</button>
+      <button id="btn-ver-empleados">Ver Todos los Empleados</button>
+    </div>
+
+    <section id="seccion-historial" class="hidden">
+      <h3>Historial de Operaciones</h3>
+      <div id="historial" class="historial"></div>
+    </section>
+
+    <section id="seccion-empleados" class="hidden">
+      <h3>Todos los Empleados</h3>
+      <div id="lista-empleados" class="empleados"></div>
+    </section>
+  </div>
+
+  <script>
+    function actualizarEstadoSincronizacion(m) {
+      const el = document.getElementById('status-sync');
+      el.textContent = m;
+      el.classList.add('syncing');
+      setTimeout(()=>{ el.textContent='Sincronizado'; el.classList.remove('syncing'); }, 1200);
+    }
+
+    document.getElementById('form-agregar').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const r = await fetch('/agregar_empleado',{method:'POST', body:new FormData(e.target)});
+      const j = await r.json();
+      document.getElementById('resultado-agregar').innerHTML =
+        j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
+      if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando...'); }
+    });
+
+    document.getElementById('form-editar').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const r = await fetch('/editar_empleado',{method:'POST', body:new FormData(e.target)});
+      const j = await r.json();
+      document.getElementById('resultado-editar').innerHTML =
+        j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
+      if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando...'); }
+    });
+
+    document.getElementById('form-consultar').addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const r = await fetch('/consultar_empleado',{method:'POST', body:new FormData(e.target)});
+      const j = await r.json();
+      const out = document.getElementById('resultado-consulta');
+      if (j.exito) {
+        out.innerHTML = `
+          <h4>Empleado Encontrado:</h4>
+          <p><strong>DNI:</strong> ${j.empleado.dni}</p>
+          <p><strong>Nombre:</strong> ${j.empleado.nombre} ${j.empleado.apellido}</p>
+          <p><strong>Puesto:</strong> ${j.empleado.puesto}</p>
+          <p><strong>Sucursal:</strong> ${j.empleado.sucursal}</p>`;
+        actualizarEstadoSincronizacion('Sincronizando...');
+      } else {
+        out.innerHTML = `<p class="error">${j.mensaje}</p>`;
+      }
+    });
+
+    document.getElementById('btn-ver-historial').addEventListener('click', async ()=>{
+      const r = await fetch('/ver_historial'); const data = await r.json();
+      const div = document.getElementById('historial');
+      div.innerHTML = '<h4>Operaciones Recientes:</h4>';
+      if (!data.historial.length) div.innerHTML += '<p>No hay operaciones registradas</p>';
+      data.historial.forEach(op=>{
+        const d=document.createElement('div'); d.className='operacion';
+        d.innerHTML = `
+          <span class="tipo ${op.tipo}">${op.tipo.toUpperCase()}</span>
+          <span class="dni">DNI: ${op.dni}</span>
+          <span class="fecha">${op.fecha}</span>
+          <span class="sucursal">${op.sucursal}</span>`;
+        div.appendChild(d);
+      });
+      document.getElementById('seccion-historial').classList.remove('hidden');
+      document.getElementById('seccion-empleados').classList.add('hidden');
+      actualizarEstadoSincronizacion('Historial actualizado');
+    });
+
+    document.getElementById('btn-ver-empleados').addEventListener('click', async ()=>{
+      const r = await fetch('/obtener_todo'); const data = await r.json();
+      const div = document.getElementById('lista-empleados');
+      div.innerHTML = '<h4>Lista de Empleados:</h4>';
+      const empleados = Object.values(data.empleados);
+      if (!empleados.length) div.innerHTML += '<p>No hay empleados registrados</p>';
+      empleados.forEach(emp=>{
+        const d=document.createElement('div'); d.className='empleado';
+        d.innerHTML = `
+          <p><strong>DNI:</strong> ${emp.dni}</p>
+          <p><strong>Nombre:</strong> ${emp.nombre} ${emp.apellido}</p>
+          <p><strong>Puesto:</strong> ${emp.puesto}</p>
+          <p><strong>Sucursal:</strong> ${emp.sucursal}</p><hr>`;
+        div.appendChild(d);
+      });
+      document.getElementById('seccion-empleados').classList.remove('hidden');
+      document.getElementById('seccion-historial').classList.add('hidden');
+      actualizarEstadoSincronizacion('Lista de empleados actualizada');
+    });
+
+    window.addEventListener('load', ()=> setTimeout(()=> actualizarEstadoSincronizacion('Sincronizado'), 800));
+  </script>
+</body>
+</html>
