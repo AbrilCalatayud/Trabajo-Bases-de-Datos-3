@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>DB Browser – {{ sucursal }} ({{ puerto }})</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    table{width:100%; border-collapse:collapse; margin:16px 0}
+    th,td{border:1px solid #ddd; padding:8px; font-size:14px}
+    th{background:#f1f1f1; text-align:left}
+    .wrap{max-width:1200px; margin:20px auto; background:#fff; padding:20px; border-radius:8px; box-shadow:0 0 10px rgba(0,0,0,.1)}
+    h1{margin-bottom:6px}
+    .sub{color:#666; margin-bottom:12px}
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <h1>DB Browser</h1>
+  <div class="sub">{{ sucursal }} · Puerto {{ puerto }}</div>
+
+  <h2>Empleados ({{ empleados|length }})</h2>
+  <table>
+    <thead><tr>
+      <th>DNI</th><th>Nombre</th><th>Apellido</th><th>Puesto</th><th>Sucursal</th>
+    </tr></thead>
+    <tbody>
+    {% for e in empleados %}
+      <tr>
+        <td>{{ e.dni }}</td>
+        <td>{{ e.nombre }}</td>
+        <td>{{ e.apellido }}</td>
+        <td>{{ e.puesto }}</td>
+        <td>{{ e.sucursal }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5"><em>Sin registros</em></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <h2>Historial ({{ historial|length }})</h2>
+  <table>
+    <thead><tr>
+      <th>ID</th><th>Tipo</th><th>DNI</th><th>Fecha</th><th>Sucursal</th>
+    </tr></thead>
+    <tbody>
+    {% for h in historial %}
+      <tr>
+        <td>{{ h.id }}</td>
+        <td>{{ h.tipo }}</td>
+        <td>{{ h.dni }}</td>
+        <td>{{ h.fecha }}</td>
+        <td>{{ h.sucursal }}</td>
+      </tr>
+    {% else %}
+      <tr><td colspan="5"><em>Sin registros</em></td></tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  <p><a href="{{ url_for('index') }}">⬅ Volver a la app</a></p>
+</div>
+</body>
+</html>
