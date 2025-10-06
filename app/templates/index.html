@@ -1,0 +1,226 @@
+{% extends "base.html" %}
+
+{% block title %}Sistema de Empleados – {{ sucursal }}{% endblock %}
+
+{% block head %}
+<style>
+  /* Sub-nav de pestañas (por vista) */
+  .tabs {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    border-bottom: 1px solid #e9ecef; margin-bottom: 16px;
+  }
+  .tab {
+    border: 1px solid #e6e6e6; background: #f8f9fa; color: #2c3e50;
+    padding: 8px 12px; border-radius: 8px 8px 0 0; cursor: pointer;
+    font-weight: 600; user-select: none;
+  }
+  .tab.active { background: #e8f0ff; border-color: #8cb6ff; }
+  .panel { display: none; }
+  .panel.active { display: block; }
+
+  /* Cabecera compacta */
+  .page-head {
+    display: grid; grid-template-columns: 1fr auto; gap: 12px;
+    align-items: center; margin-bottom: 12px;
+  }
+  .page-head h1 { margin: 0; }
+  .sticky-actions {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <div class="page-head">
+    <div>
+      <h1>Sistema de Gestión de Empleados</h1>
+      <h2 style="color:#6b7280; font-weight:500; margin-top:6px">
+        {{ sucursal }} · Puerto {{ puerto }}
+      </h2>
+    </div>
+    <div class="sticky-actions">
+      <span id="status-sync" class="sync-status">Sincronizando…</span>
+      <button id="btn-ver-historial">Historial</button>
+      <button id="btn-ver-empleados">Empleados</button>
+    </div>
+  </div>
+
+  <!-- Pestañas de operaciones -->
+  <div class="tabs" role="tablist" aria-label="Operaciones">
+    <div class="tab active" data-target="#panel-agregar" role="tab" aria-selected="true">➕ Agregar</div>
+    <div class="tab" data-target="#panel-editar" role="tab" aria-selected="false">✏️ Editar</div>
+    <div class="tab" data-target="#panel-consultar" role="tab" aria-selected="false">🔎 Consultar</div>
+  </div>
+
+  <div class="sections">
+    <!-- Agregar -->
+    <section id="panel-agregar" class="form-section panel active">
+      <h3>Agregar Empleado</h3>
+      <p style="color:#6b7280; margin:6px 0 12px">
+        Cargá un nuevo empleado. El registro se replica a las demás sucursales.
+      </p>
+      <form id="form-agregar">
+        <label>DNI</label>
+        <input type="text" name="dni" placeholder="Ej: 40123456" required>
+        <label>Nombre</label>
+        <input type="text" name="nombre" placeholder="Nombre" required>
+        <label>Apellido</label>
+        <input type="text" name="apellido" placeholder="Apellido" required>
+        <label>Puesto</label>
+        <input type="text" name="puesto" placeholder="Ej: Analista" required>
+        <button type="submit">Agregar</button>
+      </form>
+      <div id="resultado-agregar" class="resultado"></div>
+    </section>
+
+    <!-- Editar -->
+    <section id="panel-editar" class="form-section panel">
+      <h3>Editar Empleado</h3>
+      <p style="color:#6b7280; margin:6px 0 12px">
+        Modificá los datos del empleado existente por DNI.
+      </p>
+      <form id="form-editar">
+        <label>DNI</label>
+        <input type="text" name="dni" placeholder="DNI a editar" required>
+        <label>Nuevo Nombre</label>
+        <input type="text" name="nombre" placeholder="Nuevo nombre" required>
+        <label>Nuevo Apellido</label>
+        <input type="text" name="apellido" placeholder="Nuevo apellido" required>
+        <label>Nuevo Puesto</label>
+        <input type="text" name="puesto" placeholder="Nuevo puesto" required>
+        <button type="submit">Guardar cambios</button>
+      </form>
+      <div id="resultado-editar" class="resultado"></div>
+    </section>
+
+    <!-- Consultar -->
+    <section id="panel-consultar" class="form-section panel">
+      <h3>Consultar Empleado</h3>
+      <p style="color:#6b7280; margin:6px 0 12px">
+        Buscá un empleado por DNI. La lectura queda registrada en el historial.
+      </p>
+      <form id="form-consultar">
+        <label>DNI</label>
+        <input type="text" name="dni" placeholder="DNI a consultar" required>
+        <button type="submit">Consultar</button>
+      </form>
+      <div id="resultado-consulta" class="resultado"></div>
+    </section>
+  </div>
+
+  <!-- Listados -->
+  <section id="seccion-historial" class="hidden" aria-live="polite">
+    <h3>Historial de Operaciones</h3>
+    <div id="historial" class="historial"></div>
+  </section>
+
+  <section id="seccion-empleados" class="hidden" aria-live="polite">
+    <h3>Todos los Empleados</h3>
+    <div id="lista-empleados" class="empleados"></div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // ---- Tabs UI ----
+  const tabs = document.querySelectorAll('.tab');
+  const panels = document.querySelectorAll('.panel');
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => x.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelector(t.dataset.target).classList.add('active');
+  }));
+
+  // ---- Estado de sincronización ----
+  function actualizarEstadoSincronizacion(m) {
+    const el = document.getElementById('status-sync');
+    el.textContent = m;
+    el.classList.add('syncing');
+    setTimeout(()=>{ el.textContent='Sincronizado'; el.classList.remove('syncing'); }, 1000);
+  }
+
+  // ---- AGREGAR ----
+  document.getElementById('form-agregar').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const r = await fetch('/agregar_empleado',{ method:'POST', body:new FormData(e.target) });
+    const j = await r.json();
+    document.getElementById('resultado-agregar').innerHTML =
+      j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
+    if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando…'); }
+  });
+
+  // ---- EDITAR ----
+  document.getElementById('form-editar').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const r = await fetch('/editar_empleado',{ method:'POST', body:new FormData(e.target) });
+    const j = await r.json();
+    document.getElementById('resultado-editar').innerHTML =
+      j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
+    if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando…'); }
+  });
+
+  // ---- CONSULTAR ----
+  document.getElementById('form-consultar').addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const r = await fetch('/consultar_empleado',{ method:'POST', body:new FormData(e.target) });
+    const j = await r.json();
+    const out = document.getElementById('resultado-consulta');
+    if (j.exito) {
+      out.innerHTML = `
+        <h4>Empleado Encontrado</h4>
+        <p><strong>DNI:</strong> ${j.empleado.dni}</p>
+        <p><strong>Nombre:</strong> ${j.empleado.nombre} ${j.empleado.apellido}</p>
+        <p><strong>Puesto:</strong> ${j.empleado.puesto}</p>
+        <p><strong>Sucursal:</strong> ${j.empleado.sucursal}</p>`;
+      actualizarEstadoSincronizacion('Sincronizando…');
+    } else {
+      out.innerHTML = `<p class="error">${j.mensaje}</p>`;
+    }
+  });
+
+  // ---- HISTORIAL ----
+  document.getElementById('btn-ver-historial').addEventListener('click', async ()=>{
+    const r = await fetch('/ver_historial'); const data = await r.json();
+    const div = document.getElementById('historial');
+    div.innerHTML = '<h4>Operaciones Recientes</h4>';
+    if (!data.historial.length) div.innerHTML += '<p>No hay operaciones registradas</p>';
+    data.historial.forEach(op=>{
+      const d=document.createElement('div'); d.className='operacion';
+      d.innerHTML = `
+        <span class="tipo ${op.tipo}">${op.tipo.toUpperCase()}</span>
+        <span class="dni">DNI: ${op.dni}</span>
+        <span class="fecha">${op.fecha}</span>
+        <span class="sucursal">${op.sucursal}</span>`;
+      div.appendChild(d);
+    });
+    document.getElementById('seccion-historial').classList.remove('hidden');
+    document.getElementById('seccion-empleados').classList.add('hidden');
+    actualizarEstadoSincronizacion('Historial actualizado');
+  });
+
+  // ---- EMPLEADOS ----
+  document.getElementById('btn-ver-empleados').addEventListener('click', async ()=>{
+    const r = await fetch('/obtener_todo'); const data = await r.json();
+    const div = document.getElementById('lista-empleados');
+    div.innerHTML = '<h4>Lista de Empleados</h4>';
+    const empleados = Object.values(data.empleados);
+    if (!empleados.length) div.innerHTML += '<p>No hay empleados registrados</p>';
+    empleados.forEach(emp=>{
+      const d=document.createElement('div'); d.className='empleado';
+      d.innerHTML = `
+        <p><strong>DNI:</strong> ${emp.dni}</p>
+        <p><strong>Nombre:</strong> ${emp.nombre} ${emp.apellido}</p>
+        <p><strong>Puesto:</strong> ${emp.puesto}</p>
+        <p><strong>Sucursal:</strong> ${emp.sucursal}</p><hr>`;
+      div.appendChild(d);
+    });
+    document.getElementById('seccion-empleados').classList.remove('hidden');
+    document.getElementById('seccion-historial').classList.add('hidden');
+    actualizarEstadoSincronizacion('Lista de empleados actualizada');
+  });
+
+  // Arranque
+  window.addEventListener('load', ()=> setTimeout(()=> actualizarEstadoSincronizacion('Sincronizado'), 800));
+</script>
+{% endblock %}

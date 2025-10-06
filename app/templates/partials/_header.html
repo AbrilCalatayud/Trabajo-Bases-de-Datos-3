@@ -1,0 +1,10 @@
+<!-- NAV DE SUCURSALES -->
+<div class="topnav">
+  <a href="http://localhost:5000/" class="{{ 'active' if puerto == 5000 else '' }}">Sucursal_5000</a>
+  <a href="http://localhost:5001/" class="{{ 'active' if puerto == 5001 else '' }}">Sucursal_5001</a>
+  <a href="http://localhost:5002/" class="{{ 'active' if puerto == 5002 else '' }}">Sucursal_5002</a>
+
+  <div class="right">
+    <a href="{{ url_for('admin_db') }}">Ver BD ({{ puerto }})</a>
+  </div>
+</div>
