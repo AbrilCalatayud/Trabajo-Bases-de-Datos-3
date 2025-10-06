@@ -153,8 +153,11 @@ Copialo y renombralo a `.env` si querés correr un solo nodo.
 ---
 
 ## 👨‍💻 Autores
-
-- **Agustín Giménez** – UNDEF / FIE  
+UNDEF / FIE  
+- **Abril Calatayud** 
+- **Joana Fernandez** 
+- **Martin Crespo** 
+- **Agustín Giménez** 
   Proyecto práctico de **Base de Datos 3**  
   *(Consistencia causal desde la perspectiva del cliente)*
 
