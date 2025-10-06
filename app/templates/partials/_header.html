@@ -1,8 +1,55 @@
-<!-- NAV DE SUCURSALES -->
+<!-- NAV DE SUCURSALES (fijo, 3 IPs Radmin) -->
+<style>
+  .topnav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f9fafb;
+    border-bottom: 2px solid #e5e7eb;
+    padding: 10px 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .topnav a {
+    text-decoration: none;
+    padding: 8px 14px;
+    margin-right: 6px;
+    border-radius: 8px;
+    color: #1f2937;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+  }
+  .topnav a:hover {
+    background: #e5e7eb;
+  }
+  .topnav a.active {
+    background: #3b82f6;
+    color: white;
+  }
+  .topnav .right a {
+    background: #10b981;
+    color: white;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 8px 14px;
+  }
+  .topnav .right a:hover {
+    background: #059669;
+  }
+</style>
+
 <div class="topnav">
-  <a href="http://localhost:5000/" class="{{ 'active' if puerto == 5000 else '' }}">Sucursal_5000</a>
-  <a href="http://localhost:5001/" class="{{ 'active' if puerto == 5001 else '' }}">Sucursal_5001</a>
-  <a href="http://localhost:5002/" class="{{ 'active' if puerto == 5002 else '' }}">Sucursal_5002</a>
+  <div class="links">
+    <a href="http://26.60.177.15:5000/" class="{{ 'active' if puerto == 5000 else '' }}">
+      Sucursal_5000
+    </a>
+    <a href="http://26.39.171.184:5001/" class="{{ 'active' if puerto == 5001 else '' }}">
+      Sucursal_5001
+    </a>
+    <a href="http://26.32.162.255:5002/" class="{{ 'active' if puerto == 5002 else '' }}">
+      Sucursal_5002
+    </a>
+  </div>
 
   <div class="right">
     <a href="{{ url_for('admin_db') }}">Ver BD ({{ puerto }})</a>

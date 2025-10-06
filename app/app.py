@@ -17,10 +17,16 @@ def create_app():
 
     # === Config ===
     PORT = int(os.getenv("PORT", "5000"))
-    NODE_NAME = os.getenv("NODE_NAME", f"Sucursal_{PORT}")
-    peers_env = os.getenv("PEERS", "5000,5001,5002")
-    SUCURSALES = [int(p.strip()) for p in peers_env.split(",") if p.strip().isdigit()]
-    SUCURSALES = [p for p in SUCURSALES if p != PORT]
+    HOST = os.getenv("HOST", "0.0.0.0")
+    NODE_NAME = f"Sucursal_{PORT}"  # SIEMPRE Sucursal_500X (fijo)
+
+    # PEERS como "host:puerto,host:puerto,host:puerto" para sync entre nodos
+    peers_env = os.getenv("PEERS", "127.0.0.1:5000,127.0.0.1:5001,127.0.0.1:5002")
+    PEERS = [p.strip() for p in peers_env.split(",") if ":" in p]
+
+    # Para evitar auto-llamarse en sync si definís tu IP pública (Radmin/WiFi)
+    PUBLIC_HOST = os.getenv("PUBLIC_HOST", None)  # ej: "26.60.177.15"
+    MY_ADDR = f"{PUBLIC_HOST}:{PORT}" if PUBLIC_HOST else None
 
     DATA_DIR = os.path.join(os.path.dirname(BASE_DIR), f"data_{PORT}")
     DB_PATH = os.path.join(DATA_DIR, "db.sqlite3")
@@ -58,7 +64,8 @@ def create_app():
         )""")
         conn.commit()
 
-    def _row_to_dict(row): return {k: row[k] for k in row.keys()}
+    def _row_to_dict(row):
+        return {k: row[k] for k in row.keys()}
 
     # snapshots para API/sync
     def get_empleados_dict():
@@ -68,14 +75,17 @@ def create_app():
 
     def get_historial_list():
         cur = _db().cursor()
-        cur.execute("SELECT tipo, dni, fecha, sucursal FROM historial ORDER BY fecha DESC, id DESC")
+        cur.execute("SELECT id, tipo, dni, fecha, sucursal FROM historial ORDER BY fecha DESC, id DESC")
         return [dict(r) for r in cur.fetchall()]
 
     # === Sync entre nodos (merge idempotente) ===
     def sincronizar_con_sucursales():
-        for puerto in SUCURSALES:
+        for peer in PEERS:
+            # opcional: evitar auto-llamarse si definiste PUBLIC_HOST
+            if MY_ADDR and peer == MY_ADDR:
+                continue
             try:
-                r = requests.get(f"http://127.0.0.1:{puerto}/obtener_todo", timeout=2)
+                r = requests.get(f"http://{peer}/obtener_todo", timeout=3)
                 if r.status_code != 200:
                     continue
                 datos = r.json()
@@ -105,7 +115,7 @@ def create_app():
                                         (op["tipo"], op["dni"], op["fecha"], op["sucursal"]))
                     conn.commit()
             except Exception as e:
-                print(f"[WARN] Peer {puerto} no disponible: {e}")
+                print(f"[WARN] Peer {peer} no disponible: {e}")
 
     # === Operaciones ===
     def op_agregar(dni, nombre, apellido, puesto):
@@ -159,11 +169,19 @@ def create_app():
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
         return _row_to_dict(row), "Consulta exitosa"
 
+    # === Inyectar datos globales a templates ===
+    @app.context_processor
+    def inject_globals():
+        return {
+            "sucursal": NODE_NAME,
+            "puerto": PORT,
+        }
+
     # === Rutas UI/API ===
     @app.get("/")
     def index():
         threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
-        return render_template("index.html", sucursal=NODE_NAME, puerto=PORT)
+        return render_template("index.html")
 
     @app.post("/agregar_empleado")
     def agregar_empleado_endpoint():
@@ -211,7 +229,6 @@ def create_app():
         cur.execute("SELECT * FROM historial ORDER BY fecha DESC, id DESC")
         historial = [dict(r) for r in cur.fetchall()]
         return render_template("db.html",
-                               sucursal=NODE_NAME, puerto=PORT,
                                empleados=empleados, historial=historial)
 
     _ensure_db()
@@ -220,4 +237,8 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(port=int(os.getenv("PORT", "5000")), debug=True)
+    # host configurable por HOST; reloader off para no perder host/IP
+    app.run(host=os.getenv("HOST","0.0.0.0"),
+            port=int(os.getenv("PORT","5000")),
+            debug=False,
+            use_reloader=False)
