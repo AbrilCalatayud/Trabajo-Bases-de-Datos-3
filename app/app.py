@@ -20,11 +20,18 @@ def create_app():
     HOST = os.getenv("HOST", "0.0.0.0")
     NODE_NAME = f"Sucursal_{PORT}"
 
-    # Peers "host:puerto,host:puerto,host:puerto"
-    peers_env = os.getenv("PEERS", "127.0.0.1:5000,127.0.0.1:5001,127.0.0.1:5002")
-    PEERS = [p.strip() for p in peers_env.split(",") if ":" in p]
+    # === Peers hardcodeados (9 instancias exactas, en el orden solicitado) ===
+    # Etiquetas deseadas:
+    # - 26.60.177.15  -> Sucursal_5000  (original 5000)
+    # - 26.39.171.184 -> Sucursal_5001  (original 5001)
+    # - 26.32.162.255 -> Sucursal_5002  (original 5002)
+    PEERS = [
+        "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002",
+        "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002",
+        "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001",
+    ]
 
-    # Para evitar auto-llamarse si definís tu IP pública (Radmin/WiFi)
+    # Para evitar auto-llamarse en sync si definís tu IP pública (Radmin/WiFi)
     PUBLIC_HOST = os.getenv("PUBLIC_HOST", None)
     MY_ADDR = f"{PUBLIC_HOST}:{PORT}" if PUBLIC_HOST else None
 
@@ -299,30 +306,58 @@ def create_app():
 
     @app.get("/status/peers")
     def peers_status_json():
+        """
+        Devuelve SIEMPRE las 9 filas, en el orden exacto solicitado,
+        con etiquetas por host:
+          26.60.177.15  -> Sucursal_5000
+          26.39.171.184 -> Sucursal_5001
+          26.32.162.255 -> Sucursal_5002
+        """
+        def label_for(hostport: str) -> str:
+            host, port = hostport.split(":")
+            if host == "26.60.177.15":
+                return "Sucursal_5000"
+            if host == "26.39.171.184":
+                return "Sucursal_5001"
+            if host == "26.32.162.255":
+                return "Sucursal_5002"
+            return f"Sucursal_{port}"
+
+        # Orden EXACTO deseado para status (9 entradas)
+        grid = [
+            "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002",
+            "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002",
+            "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001",
+        ]
+
         out = []
-        for peer in PEERS:
-            if MY_ADDR and peer == MY_ADDR:
-                continue
-            label = f"Sucursal_{peer.split(':')[1]}" if ':' in peer else peer
-            started = datetime.now()
+        for hostport in grid:
+            peer = hostport   # el front arma http://{peer}/
+            lbl = label_for(hostport)
             try:
+                start = datetime.now()
                 r = requests.get(f"http://{peer}/sync/status", timeout=2)
-                latency = int((datetime.now() - started).total_seconds() * 1000)
+                latency = int((datetime.now() - start).total_seconds() * 1000)
                 if r.status_code == 200:
                     data = r.json()
                     out.append({
                         "peer": peer,
-                        "label": label,
+                        "label": lbl,
                         "up": True,
                         "latency_ms": latency,
                         "remote_last_sync": data.get("last_sync")
                     })
                 else:
-                    out.append({"peer": peer, "label": label, "up": False,
-                                "latency_ms": None, "remote_last_sync": None})
+                    out.append({
+                        "peer": peer, "label": lbl, "up": False,
+                        "latency_ms": None, "remote_last_sync": None
+                    })
             except Exception:
-                out.append({"peer": peer, "label": label, "up": False,
-                            "latency_ms": None, "remote_last_sync": None})
+                out.append({
+                    "peer": peer, "label": lbl, "up": False,
+                    "latency_ms": None, "remote_last_sync": None
+                })
+
         return jsonify(out)
 
     # Inicializar DB y scheduler
