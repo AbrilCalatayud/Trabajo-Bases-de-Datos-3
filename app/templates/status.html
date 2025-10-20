@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Estado de Nodos – {{ sucursal }}{% endblock %}
+
+{% block content %}
+<h1>Estado de Nodos</h1>
+<p class="sub">Última sync local: {{ last_sync or 'Nunca' }} · Intervalo automático: {{ sync_interval }}s</p>
+
+<table>
+  <thead>
+    <tr><th>Nodo</th><th>URL</th><th>Estado</th><th>Latencia</th><th>Última sync remota</th></tr>
+  </thead>
+  <tbody id="tbody-peers">
+    <tr><td colspan="5">Cargando…</td></tr>
+  </tbody>
+</table>
+
+<script>
+async function loadPeers() {
+  try {
+    const r = await fetch('/status/peers');
+    const data = await r.json();
+    const tb = document.getElementById('tbody-peers');
+    tb.innerHTML = '';
+    if (!data.length) {
+      tb.innerHTML = '<tr><td colspan="5"><em>Sin peers configurados</em></td></tr>';
+      return;
+    }
+    for (const p of data) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${p.label}</td>
+        <td><a href="http://${p.peer}/" target="_blank">http://${p.peer}/</a></td>
+        <td>${p.up ? '✅ UP' : '❌ DOWN'}</td>
+        <td>${p.latency_ms != null ? p.latency_ms + ' ms' : '-'}</td>
+        <td>${p.remote_last_sync || '-'}</td>`;
+      tb.appendChild(tr);
+    }
+  } catch(e) {
+    document.getElementById('tbody-peers').innerHTML =
+      '<tr><td colspan="5">No se pudo obtener el estado</td></tr>';
+  }
+}
+loadPeers();
+setInterval(loadPeers, 15000);
+</script>
+{% endblock %}

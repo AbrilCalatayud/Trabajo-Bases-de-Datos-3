@@ -4,42 +4,35 @@
 
 {% block head %}
 <style>
-  /* Sub-nav de pestañas (por vista) */
-  .tabs {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    border-bottom: 1px solid #e9ecef; margin-bottom: 16px;
-  }
-  .tab {
-    border: 1px solid #e6e6e6; background: #f8f9fa; color: #2c3e50;
-    padding: 8px 12px; border-radius: 8px 8px 0 0; cursor: pointer;
-    font-weight: 600; user-select: none;
-  }
-  .tab.active { background: #e8f0ff; border-color: #8cb6ff; }
-  .panel { display: none; }
-  .panel.active { display: block; }
+  /* Pestañas */
+  .tabs { display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid #e9ecef; margin-bottom:12px; }
+  .tab { border:1px solid #e6e6e6; background:#f8f9fa; color:#2c3e50; padding:8px 12px; border-radius:8px 8px 0 0; cursor:pointer; font-weight:600; user-select:none; }
+  .tab.active { background:#e8f0ff; border-color:#8cb6ff; }
+  .panel { display:none; }
+  .panel.active { display:block; }
 
-  /* Cabecera compacta */
-  .page-head {
-    display: grid; grid-template-columns: 1fr auto; gap: 12px;
-    align-items: center; margin-bottom: 12px;
-  }
-  .page-head h1 { margin: 0; }
-  .sticky-actions {
-    display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
-  }
+  /* Cabecera compacta de la página */
+  .page-head { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; margin-bottom:12px; }
+  .page-head h1 { margin:0; }
+  .sticky-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center; }
+  .pill { padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #c3e6cb; background:#d4edda; color:#155724; }
+  .pill.syncing { background:#fff3cd; color:#856404; border-color:#ffeaa7; }
 </style>
 {% endblock %}
 
 {% block content %}
+
   <div class="page-head">
     <div>
       <h1>Sistema de Gestión de Empleados</h1>
-      <h2 style="color:#6b7280; font-weight:500; margin-top:6px">
-        {{ sucursal }} · Puerto {{ puerto }}
-      </h2>
+      <div style="color:#6b7280; margin-top:6px">{{ sucursal }} · Puerto {{ puerto }}</div>
     </div>
+
     <div class="sticky-actions">
-      <span id="status-sync" class="sync-status">Sincronizando…</span>
+      <span id="status-sync" class="pill">
+        {% if is_syncing %}Sincronizando…{% else %}{{ last_sync or 'Nunca sincronizado' }}{% endif %}
+      </span>
+      <button id="btn-sync-now" title="Traer datos desde los otros nodos">Actualizar nodo</button>
       <button id="btn-ver-historial">Historial</button>
       <button id="btn-ver-empleados">Empleados</button>
     </div>
@@ -48,7 +41,7 @@
   <!-- Pestañas de operaciones -->
   <div class="tabs" role="tablist" aria-label="Operaciones">
     <div class="tab active" data-target="#panel-agregar" role="tab" aria-selected="true">➕ Agregar</div>
-    <div class="tab" data-target="#panel-editar" role="tab" aria-selected="false">✏️ Editar</div>
+    <div class="tab" data-target="#panel-editar"  role="tab" aria-selected="false">✏️ Editar</div>
     <div class="tab" data-target="#panel-consultar" role="tab" aria-selected="false">🔎 Consultar</div>
   </div>
 
@@ -57,7 +50,7 @@
     <section id="panel-agregar" class="form-section panel active">
       <h3>Agregar Empleado</h3>
       <p style="color:#6b7280; margin:6px 0 12px">
-        Cargá un nuevo empleado. El registro se replica a las demás sucursales.
+        Cargá un nuevo empleado. El cambio se replica cuando corra la sincronización (automática o manual).
       </p>
       <form id="form-agregar">
         <label>DNI</label>
@@ -97,7 +90,7 @@
     <section id="panel-consultar" class="form-section panel">
       <h3>Consultar Empleado</h3>
       <p style="color:#6b7280; margin:6px 0 12px">
-        Buscá un empleado por DNI. La lectura queda registrada en el historial.
+        Buscá un empleado por DNI. La lectura se registra en el historial y se replica en la próxima sync.
       </p>
       <form id="form-consultar">
         <label>DNI</label>
@@ -133,12 +126,33 @@
   }));
 
   // ---- Estado de sincronización ----
-  function actualizarEstadoSincronizacion(m) {
-    const el = document.getElementById('status-sync');
-    el.textContent = m;
-    el.classList.add('syncing');
-    setTimeout(()=>{ el.textContent='Sincronizado'; el.classList.remove('syncing'); }, 1000);
+  async function pollSyncStatus() {
+    try {
+      const r = await fetch('/sync/status');
+      const s = await r.json();
+      const el = document.getElementById('status-sync');
+      if (s.syncing) {
+        el.textContent = 'Sincronizando…';
+        el.classList.add('syncing');
+      } else {
+        el.textContent = s.last_sync ? `Última sync: ${s.last_sync}` : 'Nunca sincronizado';
+        el.classList.remove('syncing');
+      }
+    } catch(err) {
+      // si falla, no rompas la UI
+    }
   }
+
+  document.getElementById('btn-sync-now').addEventListener('click', async () => {
+    const el = document.getElementById('status-sync');
+    el.textContent = 'Sincronizando…';
+    el.classList.add('syncing');
+    try { await fetch('/sync/now', {method:'POST'}); } catch(e) {}
+    // 3 polls rápidos para actualizar label
+    setTimeout(pollSyncStatus, 1000);
+    setTimeout(pollSyncStatus, 2000);
+    setTimeout(pollSyncStatus, 3000);
+  });
 
   // ---- AGREGAR ----
   document.getElementById('form-agregar').addEventListener('submit', async (e)=>{
@@ -147,7 +161,7 @@
     const j = await r.json();
     document.getElementById('resultado-agregar').innerHTML =
       j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
-    if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando…'); }
+    if (j.exito) e.target.reset();
   });
 
   // ---- EDITAR ----
@@ -157,7 +171,7 @@
     const j = await r.json();
     document.getElementById('resultado-editar').innerHTML =
       j.exito ? `<p class="success">${j.mensaje}</p>` : `<p class="error">${j.mensaje}</p>`;
-    if (j.exito) { e.target.reset(); actualizarEstadoSincronizacion('Sincronizando…'); }
+    if (j.exito) e.target.reset();
   });
 
   // ---- CONSULTAR ----
@@ -173,7 +187,6 @@
         <p><strong>Nombre:</strong> ${j.empleado.nombre} ${j.empleado.apellido}</p>
         <p><strong>Puesto:</strong> ${j.empleado.puesto}</p>
         <p><strong>Sucursal:</strong> ${j.empleado.sucursal}</p>`;
-      actualizarEstadoSincronizacion('Sincronizando…');
     } else {
       out.innerHTML = `<p class="error">${j.mensaje}</p>`;
     }
@@ -196,7 +209,6 @@
     });
     document.getElementById('seccion-historial').classList.remove('hidden');
     document.getElementById('seccion-empleados').classList.add('hidden');
-    actualizarEstadoSincronizacion('Historial actualizado');
   });
 
   // ---- EMPLEADOS ----
@@ -217,10 +229,13 @@
     });
     document.getElementById('seccion-empleados').classList.remove('hidden');
     document.getElementById('seccion-historial').classList.add('hidden');
-    actualizarEstadoSincronizacion('Lista de empleados actualizada');
   });
 
   // Arranque
-  window.addEventListener('load', ()=> setTimeout(()=> actualizarEstadoSincronizacion('Sincronizado'), 800));
+  window.addEventListener('load', ()=>{
+    pollSyncStatus();
+    // refrescar estado cada 30s
+    setInterval(pollSyncStatus, 30000);
+  });
 </script>
 {% endblock %}

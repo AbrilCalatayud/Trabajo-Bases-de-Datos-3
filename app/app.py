@@ -1,7 +1,7 @@
-import os, json, sqlite3, threading
+import os, sqlite3, threading, time
 from datetime import datetime
 from threading import Lock
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, make_response
 import requests
 from dotenv import load_dotenv
 
@@ -15,24 +15,31 @@ load_dotenv()
 def create_app():
     app = Flask(__name__, template_folder=TEMPLATES_DIR, static_folder=STATIC_DIR)
 
-    # === Config ===
+    # === Configuración ===
     PORT = int(os.getenv("PORT", "5000"))
     HOST = os.getenv("HOST", "0.0.0.0")
-    NODE_NAME = f"Sucursal_{PORT}"  # SIEMPRE Sucursal_500X (fijo)
+    NODE_NAME = f"Sucursal_{PORT}"
 
-    # PEERS como "host:puerto,host:puerto,host:puerto" para sync entre nodos
+    # Peers "host:puerto,host:puerto,host:puerto"
     peers_env = os.getenv("PEERS", "127.0.0.1:5000,127.0.0.1:5001,127.0.0.1:5002")
     PEERS = [p.strip() for p in peers_env.split(",") if ":" in p]
 
-    # Para evitar auto-llamarse en sync si definís tu IP pública (Radmin/WiFi)
-    PUBLIC_HOST = os.getenv("PUBLIC_HOST", None)  # ej: "26.60.177.15"
+    # Para evitar auto-llamarse si definís tu IP pública (Radmin/WiFi)
+    PUBLIC_HOST = os.getenv("PUBLIC_HOST", None)
     MY_ADDR = f"{PUBLIC_HOST}:{PORT}" if PUBLIC_HOST else None
+
+    # Control de sincronización
+    AUTO_SYNC = int(os.getenv("AUTO_SYNC", "0"))            # 0 = manual, 1 = al modificar
+    SYNC_INTERVAL = int(os.getenv("SYNC_INTERVAL", "600"))  # 10 minutos por defecto
 
     DATA_DIR = os.path.join(os.path.dirname(BASE_DIR), f"data_{PORT}")
     DB_PATH = os.path.join(DATA_DIR, "db.sqlite3")
     os.makedirs(DATA_DIR, exist_ok=True)
 
-    _db_lock = Lock()  # serialize writes from threads
+    _db_lock = Lock()    # serializa writes
+    _sync_lock = Lock()  # evita sync concurrentes
+    app._syncing = False
+    app._last_sync_iso = None
 
     # === DB helpers (SQLite) ===
     def _db():
@@ -57,17 +64,15 @@ def create_app():
         cur.execute("""
         CREATE TABLE IF NOT EXISTS historial(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            tipo TEXT NOT NULL,        -- read | write | update
+            tipo TEXT NOT NULL,
             dni TEXT NOT NULL,
-            fecha TEXT NOT NULL,       -- 'YYYY-MM-DD HH:MM:SS'
+            fecha TEXT NOT NULL,
             sucursal TEXT NOT NULL
         )""")
         conn.commit()
 
-    def _row_to_dict(row):
-        return {k: row[k] for k in row.keys()}
+    def _row_to_dict(row): return {k: row[k] for k in row.keys()}
 
-    # snapshots para API/sync
     def get_empleados_dict():
         cur = _db().cursor()
         cur.execute("SELECT * FROM empleados")
@@ -78,46 +83,77 @@ def create_app():
         cur.execute("SELECT id, tipo, dni, fecha, sucursal FROM historial ORDER BY fecha DESC, id DESC")
         return [dict(r) for r in cur.fetchall()]
 
-    # === Sync entre nodos (merge idempotente) ===
+    # === SYNC ===
+    def _merge_from_snapshot(emp_rem, hist_rem):
+        """Inserta solo los registros faltantes."""
+        merged_emp, merged_ops = 0, 0
+        with _db_lock:
+            conn = _db(); cur = conn.cursor()
+            for dni, e in emp_rem.items():
+                cur.execute("SELECT 1 FROM empleados WHERE dni=?", (dni,))
+                if not cur.fetchone():
+                    cur.execute(
+                        "INSERT INTO empleados(dni,nombre,apellido,puesto,sucursal) VALUES(?,?,?,?,?)",
+                        (e["dni"], e["nombre"], e["apellido"], e["puesto"], e["sucursal"])
+                    )
+                    merged_emp += 1
+
+            for op in hist_rem:
+                cur.execute("""SELECT 1 FROM historial
+                               WHERE tipo=? AND dni=? AND fecha=? AND sucursal=?""",
+                            (op["tipo"], op["dni"], op["fecha"], op["sucursal"]))
+                if not cur.fetchone():
+                    cur.execute("""INSERT INTO historial(tipo,dni,fecha,sucursal)
+                                   VALUES(?,?,?,?)""",
+                                (op["tipo"], op["dni"], op["fecha"], op["sucursal"]))
+                    merged_ops += 1
+            conn.commit()
+        return merged_emp, merged_ops
+
     def sincronizar_con_sucursales():
+        peers_ok = total_emp = total_ops = 0
         for peer in PEERS:
-            # opcional: evitar auto-llamarse si definiste PUBLIC_HOST
             if MY_ADDR and peer == MY_ADDR:
                 continue
             try:
-                r = requests.get(f"http://{peer}/obtener_todo", timeout=3)
+                r = requests.get(f"http://{peer}/obtener_todo", timeout=4)
                 if r.status_code != 200:
                     continue
-                datos = r.json()
-                emp_rem = datos.get("empleados", {})
-                hist_rem = datos.get("historial", [])
-
-                with _db_lock:
-                    conn = _db(); cur = conn.cursor()
-
-                    # merge empleados: insertar si no existe
-                    for dni, e in emp_rem.items():
-                        cur.execute("SELECT 1 FROM empleados WHERE dni=?", (dni,))
-                        if not cur.fetchone():
-                            cur.execute(
-                                "INSERT INTO empleados(dni, nombre, apellido, puesto, sucursal) VALUES(?,?,?,?,?)",
-                                (e["dni"], e["nombre"], e["apellido"], e["puesto"], e["sucursal"])
-                            )
-
-                    # merge historial (idempotente por 4 campos)
-                    for op in hist_rem:
-                        cur.execute("""SELECT 1 FROM historial
-                                       WHERE tipo=? AND dni=? AND fecha=? AND sucursal=?""",
-                                    (op["tipo"], op["dni"], op["fecha"], op["sucursal"]))
-                        if not cur.fetchone():
-                            cur.execute("""INSERT INTO historial(tipo, dni, fecha, sucursal)
-                                           VALUES(?,?,?,?)""",
-                                        (op["tipo"], op["dni"], op["fecha"], op["sucursal"]))
-                    conn.commit()
+                data = r.json()
+                emp_rem = data.get("empleados", {})
+                hist_rem = data.get("historial", [])
+                merged_emp, merged_ops = _merge_from_snapshot(emp_rem, hist_rem)
+                peers_ok += 1
+                total_emp += merged_emp
+                total_ops += merged_ops
             except Exception as e:
                 print(f"[WARN] Peer {peer} no disponible: {e}")
+        return {"peers_ok": peers_ok, "merged_empleados": total_emp, "merged_historial": total_ops}
 
-    # === Operaciones ===
+    def _sync_now_blocking():
+        with _sync_lock:
+            if app._syncing:
+                return {"already_running": True}
+            app._syncing = True
+        try:
+            stats = sincronizar_con_sucursales()
+            app._last_sync_iso = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            return {"ok": True, "stats": stats, "last_sync": app._last_sync_iso}
+        finally:
+            app._syncing = False
+
+    def _sync_now_async():
+        threading.Thread(target=_sync_now_blocking, daemon=True).start()
+
+    def _background_scheduler():
+        """Hilo que corre cada SYNC_INTERVAL segundos."""
+        if SYNC_INTERVAL <= 0:
+            return
+        while True:
+            time.sleep(SYNC_INTERVAL)
+            _sync_now_async()
+
+    # === Operaciones CRUD ===
     def op_agregar(dni, nombre, apellido, puesto):
         with _db_lock:
             conn = _db(); cur = conn.cursor()
@@ -126,15 +162,16 @@ def create_app():
                 return False, "El empleado ya existe"
 
             cur.execute(
-                "INSERT INTO empleados(dni, nombre, apellido, puesto, sucursal) VALUES(?,?,?,?,?)",
+                "INSERT INTO empleados(dni,nombre,apellido,puesto,sucursal) VALUES(?,?,?,?,?)",
                 (dni, nombre, apellido, puesto, NODE_NAME)
             )
             cur.execute(
-                "INSERT INTO historial(tipo, dni, fecha, sucursal) VALUES(?,?,datetime('now','localtime'),?)",
+                "INSERT INTO historial(tipo,dni,fecha,sucursal) VALUES(?,?,datetime('now','localtime'),?)",
                 ("write", dni, NODE_NAME)
             )
             conn.commit()
-        threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
+        if AUTO_SYNC:
+            _sync_now_async()
         return True, "Empleado agregado correctamente"
 
     def op_editar(dni, nombre, apellido, puesto):
@@ -144,14 +181,15 @@ def create_app():
             if not cur.fetchone():
                 return False, "El empleado no existe"
 
-            cur.execute("UPDATE empleados SET nombre=?, apellido=?, puesto=? WHERE dni=?",
+            cur.execute("UPDATE empleados SET nombre=?,apellido=?,puesto=? WHERE dni=?",
                         (nombre, apellido, puesto, dni))
             cur.execute(
-                "INSERT INTO historial(tipo, dni, fecha, sucursal) VALUES(?,?,datetime('now','localtime'),?)",
+                "INSERT INTO historial(tipo,dni,fecha,sucursal) VALUES(?,?,datetime('now','localtime'),?)",
                 ("update", dni, NODE_NAME)
             )
             conn.commit()
-        threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
+        if AUTO_SYNC:
+            _sync_now_async()
         return True, "Empleado editado correctamente"
 
     def op_consultar(dni):
@@ -162,25 +200,28 @@ def create_app():
             if not row:
                 return None, "El empleado no existe"
             cur.execute(
-                "INSERT INTO historial(tipo, dni, fecha, sucursal) VALUES(?,?,datetime('now','localtime'),?)",
+                "INSERT INTO historial(tipo,dni,fecha,sucursal) VALUES(?,?,datetime('now','localtime'),?)",
                 ("read", dni, NODE_NAME)
             )
             conn.commit()
-        threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
+        if AUTO_SYNC:
+            _sync_now_async()
         return _row_to_dict(row), "Consulta exitosa"
 
-    # === Inyectar datos globales a templates ===
+    # === Contexto global para templates ===
     @app.context_processor
     def inject_globals():
         return {
             "sucursal": NODE_NAME,
             "puerto": PORT,
+            "sync_interval": SYNC_INTERVAL,
+            "last_sync": app._last_sync_iso,
+            "is_syncing": app._syncing,
         }
 
-    # === Rutas UI/API ===
+    # === Rutas principales ===
     @app.get("/")
     def index():
-        threading.Thread(target=sincronizar_con_sucursales, daemon=True).start()
         return render_template("index.html")
 
     @app.post("/agregar_empleado")
@@ -202,7 +243,7 @@ def create_app():
             return jsonify({"exito": True, "mensaje": msg, "empleado": emp})
         return jsonify({"exito": False, "mensaje": msg})
 
-    # APIs para sync/visualización
+    # === APIs de datos y sync ===
     @app.get("/obtener_historial")
     def obtener_historial_endpoint():
         return jsonify(get_historial_list())
@@ -215,12 +256,33 @@ def create_app():
     def obtener_todo_endpoint():
         return jsonify({"empleados": get_empleados_dict(), "historial": get_historial_list()})
 
-    @app.get("/ver_historial")
-    def ver_historial_endpoint():
-        sincronizar_con_sucursales()
-        return jsonify({"empleados": get_empleados_dict(), "historial": get_historial_list()})
+    @app.post("/sync/now")
+    def sync_now_endpoint():
+        _sync_now_async()
+        return jsonify({"started": True})
 
-    # === Página para ver la BD (tablas) ===
+    @app.get("/sync/status")
+    def sync_status_endpoint():
+        return jsonify({
+            "syncing": app._syncing,
+            "last_sync": app._last_sync_iso,
+            "interval": SYNC_INTERVAL
+        })
+
+    # === Healthcheck con CORS ===
+    @app.get("/health")
+    def health():
+        resp = make_response(jsonify({
+            "ok": True,
+            "port": PORT,
+            "node": NODE_NAME,
+            "timestamp": time.time(),
+        }), 200)
+        resp.headers["Access-Control-Allow-Origin"] = "*"
+        resp.headers["Cache-Control"] = "no-store"
+        return resp
+
+    # === Página DB Browser ===
     @app.get("/admin/db")
     def admin_db():
         conn = _db(); cur = conn.cursor()
@@ -228,17 +290,52 @@ def create_app():
         empleados = [dict(r) for r in cur.fetchall()]
         cur.execute("SELECT * FROM historial ORDER BY fecha DESC, id DESC")
         historial = [dict(r) for r in cur.fetchall()]
-        return render_template("db.html",
-                               empleados=empleados, historial=historial)
+        return render_template("db.html", empleados=empleados, historial=historial)
 
+    # === Página y API de estado ===
+    @app.get("/status")
+    def status_page():
+        return render_template("status.html")
+
+    @app.get("/status/peers")
+    def peers_status_json():
+        out = []
+        for peer in PEERS:
+            if MY_ADDR and peer == MY_ADDR:
+                continue
+            label = f"Sucursal_{peer.split(':')[1]}" if ':' in peer else peer
+            started = datetime.now()
+            try:
+                r = requests.get(f"http://{peer}/sync/status", timeout=2)
+                latency = int((datetime.now() - started).total_seconds() * 1000)
+                if r.status_code == 200:
+                    data = r.json()
+                    out.append({
+                        "peer": peer,
+                        "label": label,
+                        "up": True,
+                        "latency_ms": latency,
+                        "remote_last_sync": data.get("last_sync")
+                    })
+                else:
+                    out.append({"peer": peer, "label": label, "up": False,
+                                "latency_ms": None, "remote_last_sync": None})
+            except Exception:
+                out.append({"peer": peer, "label": label, "up": False,
+                            "latency_ms": None, "remote_last_sync": None})
+        return jsonify(out)
+
+    # Inicializar DB y scheduler
     _ensure_db()
+    threading.Thread(target=_background_scheduler, daemon=True).start()
     return app
 
 
 if __name__ == "__main__":
     app = create_app()
-    # host configurable por HOST; reloader off para no perder host/IP
-    app.run(host=os.getenv("HOST","0.0.0.0"),
-            port=int(os.getenv("PORT","5000")),
-            debug=False,
-            use_reloader=False)
+    app.run(
+        host=os.getenv("HOST", "0.0.0.0"),
+        port=int(os.getenv("PORT", "5000")),
+        debug=False,
+        use_reloader=False
+    )
