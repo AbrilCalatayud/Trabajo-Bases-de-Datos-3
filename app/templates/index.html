@@ -1,24 +1,20 @@
 {% extends "base.html" %}
-
 {% block title %}Sistema de Empleados – {{ sucursal }}{% endblock %}
 
 {% block head %}
 <style>
-  /* Pestañas */
   .tabs { display:flex; gap:8px; flex-wrap:wrap; border-bottom:1px solid #e9ecef; margin-bottom:12px; }
   .tab { border:1px solid #e6e6e6; background:#f8f9fa; color:#2c3e50; padding:8px 12px; border-radius:8px 8px 0 0; cursor:pointer; font-weight:600; user-select:none; }
   .tab.active { background:#e8f0ff; border-color:#8cb6ff; }
   .panel { display:none; }
   .panel.active { display:block; }
 
-  /* Cabecera compacta de la página */
   .page-head { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; margin-bottom:12px; }
   .page-head h1 { margin:0; }
   .sticky-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center; }
   .pill { padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #c3e6cb; background:#d4edda; color:#155724; }
   .pill.syncing { background:#fff3cd; color:#856404; border-color:#ffeaa7; }
 
-  /* Suave para la lista con botón editar */
   .empleados .item { background:#fff; border:1px solid #e9ecef; border-radius:12px; padding:12px; margin-bottom:10px; }
   .empleados .item h4{ margin:0 0 6px 0; font-size:14px; }
   .empleados .item .muted{ color:#6b7280; font-size:12px; }
@@ -28,7 +24,6 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="page-head">
     <div>
       <h1>Sistema de Gestión de Empleados</h1>
@@ -45,7 +40,6 @@
     </div>
   </div>
 
-  <!-- Pestañas de operaciones -->
   <div class="tabs" role="tablist" aria-label="Operaciones">
     <div class="tab active" data-target="#panel-agregar" role="tab" aria-selected="true">➕ Agregar</div>
     <div class="tab" data-target="#panel-editar"  role="tab" aria-selected="false">✏️ Editar</div>
@@ -53,12 +47,9 @@
   </div>
 
   <div class="sections">
-    <!-- Agregar -->
     <section id="panel-agregar" class="form-section panel active">
       <h3>Agregar Empleado</h3>
-      <p style="color:#6b7280; margin:6px 0 12px">
-        Cargá un nuevo empleado. El cambio se replica cuando corra la sincronización (automática o manual).
-      </p>
+      <p style="color:#6b7280; margin:6px 0 12px">Cargá un nuevo empleado. El cambio se replica cuando corra la sincronización (automática o manual).</p>
       <form id="form-agregar">
         <label>DNI</label>
         <input type="text" name="dni" placeholder="Ej: 40123456" required>
@@ -73,12 +64,9 @@
       <div id="resultado-agregar" class="resultado"></div>
     </section>
 
-    <!-- Editar -->
     <section id="panel-editar" class="form-section panel">
       <h3>Editar Empleado</h3>
-      <p style="color:#6b7280; margin:6px 0 12px">
-        Modificá los datos del empleado existente por DNI.
-      </p>
+      <p style="color:#6b7280; margin:6px 0 12px">Modificá los datos del empleado existente por DNI.</p>
       <form id="form-editar">
         <label>DNI</label>
         <input id="edit-dni" type="text" name="dni" placeholder="DNI a editar" required>
@@ -93,15 +81,11 @@
       <div id="resultado-editar" class="resultado"></div>
     </section>
 
-    <!-- Consultar -->
     <section id="panel-consultar" class="form-section panel">
       <h3>Consultar Empleado</h3>
-      <p style="color:#6b7280; margin:6px 0 12px">
-        Buscá un empleado por DNI. La lectura se registra en el historial y se replica en la próxima sync.
-      </p>
+      <p style="color:#6b7280; margin:6px 0 12px">Buscá un empleado por DNI. La lectura se registra en el historial y se replica en la próxima sync.</p>
       <form id="form-consultar">
         <label>DNI</label>
-        <!-- AUTOCOMPLETE -->
         <input id="consultar-dni" list="sugerencias-dni" type="text" name="dni" placeholder="DNI a consultar" required>
         <button type="submit">Consultar</button>
       </form>
@@ -109,7 +93,6 @@
     </section>
   </div>
 
-  <!-- Listados -->
   <section id="seccion-historial" class="hidden" aria-live="polite">
     <h3>Historial de Operaciones</h3>
     <div id="historial" class="historial"></div>
@@ -120,13 +103,11 @@
     <div id="lista-empleados" class="empleados"></div>
   </section>
 
-  <!-- datalist para autocomplete -->
   <datalist id="sugerencias-dni"></datalist>
 {% endblock %}
 
 {% block scripts %}
 <script>
-  // ---- Tabs UI ----
   const tabs = document.querySelectorAll('.tab');
   const panels = document.querySelectorAll('.panel');
   tabs.forEach(t => t.addEventListener('click', () => {
@@ -136,19 +117,13 @@
     document.querySelector(t.dataset.target).classList.add('active');
   }));
 
-  // ---- Estado de sincronización ----
   async function pollSyncStatus() {
     try {
       const r = await fetch('/sync/status');
       const s = await r.json();
       const el = document.getElementById('status-sync');
-      if (s.syncing) {
-        el.textContent = 'Sincronizando…';
-        el.classList.add('syncing');
-      } else {
-        el.textContent = s.last_sync ? `Última sync: ${s.last_sync}` : 'Nunca sincronizado';
-        el.classList.remove('syncing');
-      }
+      if (s.syncing) { el.textContent = 'Sincronizando…'; el.classList.add('syncing'); }
+      else { el.textContent = s.last_sync ? `Última sync: ${s.last_sync}` : 'Nunca sincronizado'; el.classList.remove('syncing'); }
     } catch(err) {}
   }
 
@@ -162,7 +137,6 @@
     setTimeout(pollSyncStatus, 3000);
   });
 
-  // ---- AGREGAR ----
   document.getElementById('form-agregar').addEventListener('submit', async (e)=>{
     e.preventDefault();
     const r = await fetch('/agregar_empleado',{ method:'POST', body:new FormData(e.target) });
@@ -172,7 +146,6 @@
     if (j.exito) e.target.reset();
   });
 
-  // ---- EDITAR ----
   document.getElementById('form-editar').addEventListener('submit', async (e)=>{
     e.preventDefault();
     const r = await fetch('/editar_empleado',{ method:'POST', body:new FormData(e.target) });
@@ -182,7 +155,6 @@
     if (j.exito) e.target.reset();
   });
 
-  // ---- CONSULTAR ----
   document.getElementById('form-consultar').addEventListener('submit', async (e)=>{
     e.preventDefault();
     const r = await fetch('/consultar_empleado',{ method:'POST', body:new FormData(e.target) });
@@ -200,7 +172,6 @@
     }
   });
 
-  // ---- AUTOCOMPLETE para Consultar ----
   function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); } }
   async function cargarSugerencias(q){
     try{
@@ -217,9 +188,8 @@
   }
   const onTypeSuggest = debounce(ev => cargarSugerencias(ev.target.value.trim()), 160);
   document.getElementById("consultar-dni").addEventListener("input", onTypeSuggest);
-  cargarSugerencias(""); // precargar
+  cargarSugerencias("");
 
-  // ---- HISTORIAL ----
   document.getElementById('btn-ver-historial').addEventListener('click', async ()=>{
     const r = await fetch('/ver_historial'); const data = await r.json();
     const div = document.getElementById('historial');
@@ -238,7 +208,6 @@
     document.getElementById('seccion-empleados').classList.add('hidden');
   });
 
-  // ---- EMPLEADOS (con botón ✏️ editar) ----
   document.getElementById('btn-ver-empleados').addEventListener('click', async ()=>{
     const r = await fetch('/obtener_todo'); const data = await r.json();
     const div = document.getElementById('lista-empleados');
@@ -262,7 +231,6 @@
     document.getElementById('seccion-historial').classList.add('hidden');
   });
 
-  // click en ✏️ → precargar formulario Editar
   document.addEventListener('click', async (ev)=>{
     const btn = ev.target.closest('.editar-rapido');
     if(!btn) return;
@@ -276,13 +244,11 @@
       document.getElementById('edit-nombre').value = e.nombre;
       document.getElementById('edit-apellido').value = e.apellido;
       document.getElementById('edit-puesto').value = e.puesto;
-      // cambiar a la pestaña Editar
       document.querySelector('.tab[data-target="#panel-editar"]').click();
       document.getElementById('edit-nombre').focus({preventScroll:true});
     }catch(err){ console.error(err); alert("Error cargando el empleado"); }
   });
 
-  // Arranque
   window.addEventListener('load', ()=>{
     pollSyncStatus();
     setInterval(pollSyncStatus, 30000);

@@ -338,6 +338,12 @@ def create_app():
     def obtener_historial_endpoint():
         return jsonify(get_historial_list())
 
+    # >>>>>>>>>>>>>>>>> AGREGADO: alias que usa la UI
+    @app.get("/ver_historial")
+    def ver_historial_endpoint():
+        return jsonify({"historial": get_historial_list()})
+    # <<<<<<<<<<<<<<<<<
+
     @app.get("/obtener_empleados")
     def obtener_empleados_endpoint():
         return jsonify(get_empleados_dict())

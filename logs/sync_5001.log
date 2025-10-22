@@ -598,3 +598,29 @@
 {"ts": "2025-10-22 01:27:01", "node": "Sucursal_5001", "port": 5001, "event": "editar_ok", "dni": "123456789"}
 {"ts": "2025-10-22 01:31:53", "node": "Sucursal_5001", "port": 5001, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5001.log", "sync_scope": "all", "my_addr": "26.39.171.184:5001"}
 {"ts": "2025-10-22 01:32:13", "node": "Sucursal_5001", "port": 5001, "event": "editar_ok", "dni": "5648"}
+{"ts": "2025-10-22 01:53:30", "node": "Sucursal_5001", "port": 5001, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5001.log", "sync_scope": "all", "my_addr": "26.39.171.184:5001"}
+{"ts": "2025-10-22 01:56:23", "node": "Sucursal_5001", "port": 5001, "event": "sync_now_endpoint_called"}
+{"ts": "2025-10-22 01:56:23", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 01:56:23", "node": "Sucursal_5001", "port": 5001, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 01:56:23", "node": "Sucursal_5001", "port": 5001, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:56:23"}
+{"ts": "2025-10-22 02:03:30", "node": "Sucursal_5001", "port": 5001, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:03:30", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:03:30", "node": "Sucursal_5001", "port": 5001, "event": "sync_already_running"}
+{"ts": "2025-10-22 02:06:50", "node": "Sucursal_5001", "port": 5001, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5001.log", "sync_scope": "all", "my_addr": "26.39.171.184:5001"}
+{"ts": "2025-10-22 02:16:50", "node": "Sucursal_5001", "port": 5001, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:16:50", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:16:50", "node": "Sucursal_5001", "port": 5001, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 02:16:50", "node": "Sucursal_5001", "port": 5001, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:50"}
+{"ts": "2025-10-22 02:26:50", "node": "Sucursal_5001", "port": 5001, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:26:50", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:26:50", "node": "Sucursal_5001", "port": 5001, "event": "sync_already_running"}
+{"ts": "2025-10-22 02:35:43", "node": "Sucursal_5001", "port": 5001, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5001.log", "sync_scope": "all", "my_addr": "26.39.171.184:5001", "wfr_mode": "async", "peer_timeout": 1.5}
+{"ts": "2025-10-22 02:36:30", "node": "Sucursal_5001", "port": 5001, "event": "sync_now_endpoint_called"}
+{"ts": "2025-10-22 02:36:30", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:36:30", "node": "Sucursal_5001", "port": 5001, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 02:36:30", "node": "Sucursal_5001", "port": 5001, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:36:30"}
+{"ts": "2025-10-22 02:36:33", "node": "Sucursal_5001", "port": 5001, "event": "sync_now_endpoint_called"}
+{"ts": "2025-10-22 02:36:33", "node": "Sucursal_5001", "port": 5001, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:36:33", "node": "Sucursal_5001", "port": 5001, "event": "sync_already_running"}
+{"ts": "2025-10-22 02:41:02", "node": "Sucursal_5001", "port": 5001, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5001.log", "sync_scope": "all", "my_addr": "26.39.171.184:5001"}
+{"ts": "2025-10-22 02:41:23", "node": "Sucursal_5001", "port": 5001, "event": "editar_ok", "dni": "5648"}
