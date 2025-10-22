@@ -1,0 +1,581 @@
+{"ts": "2025-10-20 13:57:41", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.60.177.15:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.60.177.15:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:07:41"}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 8, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:07:41", "peers_ok": 8, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.60.177.15:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.60.177.15:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:17:41"}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 8, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:17:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:17:41", "peers_ok": 8, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:27:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:27:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:27:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:27:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:41"}
+{"ts": "2025-10-20 14:27:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B6A580>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:27:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:45"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B6A470>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:27:49"}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:27:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:27:49", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:37:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:37:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:37:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:37:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:41"}
+{"ts": "2025-10-20 14:37:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B6A360>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:37:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:45"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B6A690>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:37:49"}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:37:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:37:49", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:47:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:47:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:47:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:47:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:41"}
+{"ts": "2025-10-20 14:47:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B69E10>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:47:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:45"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B699D0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:47:49"}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:47:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:47:49", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 14:57:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 14:57:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 14:57:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 14:57:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:41"}
+{"ts": "2025-10-20 14:57:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B69BF0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:57:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:45"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B69BF0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 14:57:49"}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 14:57:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 14:57:49", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:41", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-20 15:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-20 15:07:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-20 15:07:41", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-20 15:07:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:41"}
+{"ts": "2025-10-20 15:07:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B699D0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 15:07:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:45"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001EB31B697B0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-20 15:07:49"}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-20 15:07:49", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-20 15:07:49", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:25:14", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log"}
+{"ts": "2025-10-21 23:35:14", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600}
+{"ts": "2025-10-21 23:35:14", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-21 23:35:14", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-21 23:35:14", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-21 23:35:14", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:14"}
+{"ts": "2025-10-21 23:35:18", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001DEFD3C27B0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-21 23:35:18", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:18"}
+{"ts": "2025-10-21 23:35:22", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001DEFD3EE710>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-21 23:35:22", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:22"}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.39.171.184:5001", "error": "HTTPConnectionPool(host='26.39.171.184', port=5001): Max retries exceeded with url: /obtener_todo (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x000001DEFD3EEFD0>: Failed to establish a new connection: [WinError 10061] No se puede establecer una conexión ya que el equipo de destino denegó expresamente dicha conexión'))"}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:24"}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:24"}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:35:24", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:24"}
+{"ts": "2025-10-21 23:35:28", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5002", "error": "HTTPConnectionPool(host='26.32.162.255', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001DEFD3FA210>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-21 23:35:28", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:28"}
+{"ts": "2025-10-21 23:35:32", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5000", "error": "HTTPConnectionPool(host='26.32.162.255', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001DEFD3CACF0>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-21 23:35:32", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-21 23:35:32"}
+{"ts": "2025-10-21 23:35:36", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5001", "error": "HTTPConnectionPool(host='26.32.162.255', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001DEFD3CB460>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-21 23:35:36", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 2, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:35:36", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-21 23:35:36", "peers_ok": 2, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-21 23:38:42", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all"}
+{"ts": "2025-10-21 23:40:18", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all"}
+{"ts": "2025-10-21 23:44:00", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all"}
+{"ts": "2025-10-21 23:54:25", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002", "26.39.171.184:5001", "26.39.171.184:5000", "26.39.171.184:5002", "26.32.162.255:5002", "26.32.162.255:5000", "26.32.162.255:5001"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all"}
+{"ts": "2025-10-22 00:04:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:04:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:04:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:04:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:04:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:25"}
+{"ts": "2025-10-22 00:04:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C85B4D0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:04:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:29"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C883250>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 1, "merged_empleados_updates": 0, "merged_historial": 1}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 1, "merged_historial": 1}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:04:33"}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 1, "merged_historial": 1}
+{"ts": "2025-10-22 00:04:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:04:33", "peers_ok": 6, "merged_empleados": 1, "merged_historial": 1}
+{"ts": "2025-10-22 00:14:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:14:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:14:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:14:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:14:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:25"}
+{"ts": "2025-10-22 00:14:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856CF0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:14:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:29"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C8567A0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:14:33"}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:14:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:14:33", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:24:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:24:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:24:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:24:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:25"}
+{"ts": "2025-10-22 00:24:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856AD0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:24:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:29"}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856CF0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:33"}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:33"}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:33"}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:33"}
+{"ts": "2025-10-22 00:24:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5002", "error": "HTTPConnectionPool(host='26.32.162.255', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C857350>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:24:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:37"}
+{"ts": "2025-10-22 00:24:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5000", "error": "HTTPConnectionPool(host='26.32.162.255', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856BE0>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:24:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:24:41"}
+{"ts": "2025-10-22 00:24:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.32.162.255:5001", "error": "HTTPConnectionPool(host='26.32.162.255', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C857020>, 'Connection to 26.32.162.255 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:24:45", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 3, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:24:45", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:24:45", "peers_ok": 3, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:27:58", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:34:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:34:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:34:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:34:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:34:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:25"}
+{"ts": "2025-10-22 00:34:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C8568B0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:34:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:29"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C855F20>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 1, "merged_empleados_updates": 0, "merged_historial": 3}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 1, "merged_historial": 3}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:34:33"}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 1, "merged_historial": 3}
+{"ts": "2025-10-22 00:34:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:34:33", "peers_ok": 6, "merged_empleados": 1, "merged_historial": 3}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 3, "merged_empleados_updates": 0, "merged_historial": 3}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:37:58", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:37:58"}
+{"ts": "2025-10-22 00:38:02", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5000", "error": "HTTPConnectionPool(host='26.60.177.15', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001E0245BDF20>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:38:02", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:38:02"}
+{"ts": "2025-10-22 00:38:06", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001E0245BE9C0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:38:06", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:38:06"}
+{"ts": "2025-10-22 00:38:10", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001E0245BEBE0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:38:10", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 00:38:10", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:38:10", "peers_ok": 6, "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 00:44:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:44:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:44:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:44:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:44:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:25"}
+{"ts": "2025-10-22 00:44:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856580>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:44:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:29"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C855D00>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:44:33"}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:44:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:44:33", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 00:54:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 00:54:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 00:54:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 00:54:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:25"}
+{"ts": "2025-10-22 00:54:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C857570>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:54:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:29"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C855D00>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 00:54:33"}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 00:54:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 00:54:33", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:25", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 01:04:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 01:04:25", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 01:04:25", "node": "Sucursal_5000", "port": 5000, "event": "skip_self", "peer": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:04:25", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:25"}
+{"ts": "2025-10-22 01:04:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856580>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 01:04:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:29"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x0000020A3C856470>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:04:33"}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:04:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 01:04:33", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:08:43", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:09:05", "node": "Sucursal_5000", "port": 5000, "event": "consultar_ok", "dni": "123456"}
+{"ts": "2025-10-22 01:09:22", "node": "Sucursal_5000", "port": 5000, "event": "editar_ok", "dni": "123456"}
+{"ts": "2025-10-22 01:09:32", "node": "Sucursal_5000", "port": 5000, "event": "consultar_not_found", "dni": ""}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_now_endpoint_called"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:33"}
+{"ts": "2025-10-22 01:09:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5000", "error": "HTTPConnectionPool(host='26.60.177.15', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002CB95B3A7A0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 01:09:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:37"}
+{"ts": "2025-10-22 01:09:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002CB95B3B240>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 01:09:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 01:09:41"}
+{"ts": "2025-10-22 01:09:45", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000002CB95B3B460>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 01:09:45", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:09:45", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 01:09:45", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 01:15:43", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:20:18", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:26:32", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:31:52", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 01:53:29", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 3, "merged_historial": 3}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:03:29", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:29"}
+{"ts": "2025-10-22 02:03:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5000", "error": "HTTPConnectionPool(host='26.60.177.15', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000259DB786030>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:03:33", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:33"}
+{"ts": "2025-10-22 02:03:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000259DB787020>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:03:37", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:03:37"}
+{"ts": "2025-10-22 02:03:41", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x00000259DB787240>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:03:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 02:03:41", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 02:03:41", "peers_ok": 6, "merged_empleados": 3, "merged_historial": 3}
+{"ts": "2025-10-22 02:06:51", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:16:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:51"}
+{"ts": "2025-10-22 02:16:55", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5000", "error": "HTTPConnectionPool(host='26.60.177.15', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D96470>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:16:55", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:55"}
+{"ts": "2025-10-22 02:16:59", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D97020>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:16:59", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:16:59"}
+{"ts": "2025-10-22 02:17:03", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D97240>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:17:03", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:17:03", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 02:17:03", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "scheduler_tick", "interval": 600, "scope": "all"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "sync_async_triggered"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "sync_start", "auto": false}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.32.162.255:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.32.162.255:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5000", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5001", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.39.171.184:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "merge_applied", "merged_empleados_inserts": 0, "merged_empleados_updates": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_ok", "peer": "26.39.171.184:5002", "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:26:51", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5000", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:51"}
+{"ts": "2025-10-22 02:26:55", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5000", "error": "HTTPConnectionPool(host='26.60.177.15', port=5000): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D97570>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:26:55", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5001", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:55"}
+{"ts": "2025-10-22 02:26:59", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5001", "error": "HTTPConnectionPool(host='26.60.177.15', port=5001): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D978A0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:26:59", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_start", "peer": "26.60.177.15:5002", "endpoint": "/obtener_todo", "started_at": "2025-10-22 02:26:59"}
+{"ts": "2025-10-22 02:27:03", "node": "Sucursal_5000", "port": 5000, "event": "peer_request_error", "peer": "26.60.177.15:5002", "error": "HTTPConnectionPool(host='26.60.177.15', port=5002): Max retries exceeded with url: /obtener_todo (Caused by ConnectTimeoutError(<urllib3.connection.HTTPConnection object at 0x000001D544D979B0>, 'Connection to 26.60.177.15 timed out. (connect timeout=4)'))"}
+{"ts": "2025-10-22 02:27:03", "node": "Sucursal_5000", "port": 5000, "event": "sync_summary", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:27:03", "node": "Sucursal_5000", "port": 5000, "event": "sync_end", "last_sync": "2025-10-22 02:27:03", "peers_ok": 6, "merged_empleados": 0, "merged_historial": 0}
+{"ts": "2025-10-22 02:35:44", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000", "wfr_mode": "async", "peer_timeout": 1.5}
+{"ts": "2025-10-22 02:41:01", "node": "Sucursal_5000", "port": 5000, "event": "app_started", "peers": ["26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002", "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002", "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002"], "log_path": "C:\\Users\\DarkStone\\Desktop\\bd3-session-consistency-empleados\\logs\\sync_5000.log", "sync_scope": "all", "my_addr": "26.60.177.15:5000"}

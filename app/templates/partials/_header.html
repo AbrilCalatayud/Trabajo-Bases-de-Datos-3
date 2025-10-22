@@ -1,10 +1,82 @@
-<!-- NAV DE SUCURSALES -->
+<!-- NAV DE SUCURSALES con failover ordenado (primario -> backups) -->
+<style>
+  .topnav{display:flex;justify-content:space-between;align-items:center;gap:12px;background:#f9fafb;border-bottom:2px solid #e5e7eb;padding:10px 16px;margin-bottom:20px;flex-wrap:wrap}
+  .topnav a{display:inline-block;text-decoration:none;padding:8px 14px;border-radius:8px;color:#1f2937;font-weight:500;transition:.2s}
+  .topnav a:hover{background:#e5e7eb}
+  .topnav a.active{background:#3b82f6;color:#fff}
+  .topnav .right a{background:#10b981;color:#fff;font-weight:600;border-radius:6px}
+  .topnav .right a:hover{background:#059669}
+</style>
+
 <div class="topnav">
-  <a href="http://localhost:5000/" class="{{ 'active' if puerto == 5000 else '' }}">Sucursal_5000</a>
-  <a href="http://localhost:5001/" class="{{ 'active' if puerto == 5001 else '' }}">Sucursal_5001</a>
-  <a href="http://localhost:5002/" class="{{ 'active' if puerto == 5002 else '' }}">Sucursal_5002</a>
+  <div class="links">
+    <!-- OJO: los data-sucursal indican el puerto destino. Los links tienen href “titular” (primero) -->
+    <a href="http://26.60.177.15:5000/"  data-sucursal="5000" class="{{ 'active' if puerto == 5000 else '' }}">Sucursal_5000</a>
+    <a href="http://26.39.171.184:5001/" data-sucursal="5001" class="{{ 'active' if puerto == 5001 else '' }}">Sucursal_5001</a>
+    <a href="http://26.32.162.255:5002/" data-sucursal="5002" class="{{ 'active' if puerto == 5002 else '' }}">Sucursal_5002</a>
+  </div>
 
   <div class="right">
     <a href="{{ url_for('admin_db') }}">Ver BD ({{ puerto }})</a>
+    <a href="{{ url_for('status_page') }}">Estado</a>
   </div>
 </div>
+
+<script>
+/**
+ * Orden de preferencia por sucursal:
+ * - La PRIMER URL de cada array es el “titular”.
+ * - Si no responde /health, probamos las siguientes en orden.
+ */
+const FAILOVER = {
+  5000: ["http://26.60.177.15:5000/","http://26.39.171.184:5000/","http://26.32.162.255:5000/"],
+  5001: ["http://26.39.171.184:5001/","http://26.60.177.15:5001/","http://26.32.162.255:5001/"],
+  5002: ["http://26.32.162.255:5002/","http://26.60.177.15:5002/","http://26.39.171.184:5002/"],
+};
+
+// fetch con timeout corto
+function fetchWithTimeout(url, ms = 1500) {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  return fetch(url, {signal: ctrl.signal, cache: "no-store", mode: "cors"})
+    .finally(() => clearTimeout(t));
+}
+
+async function isUp(base) {
+  try {
+    const u = new URL("/health", base);
+    u.search = `t=${Date.now()}`;          // evita cache
+    const r = await fetchWithTimeout(u.toString(), 1800);
+    return r.ok;                            // 200 => UP
+  } catch { return false; }
+}
+
+// Elige la primera URL que esté UP (probando en orden)
+async function pickAlive(urls) {
+  for (const base of urls) {
+    if (await isUp(base)) return base;
+  }
+  return null;
+}
+
+// Intercepta click y aplica failover ordenado
+document.querySelectorAll('.topnav .links a[data-sucursal]').forEach(a => {
+  a.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const port = a.getAttribute('data-sucursal');
+    const candidates = FAILOVER[port] || [a.href];
+
+    // 1) probamos el TITULAR (candidates[0]) — ya viene primero
+    // 2) si está caído, vamos por backups
+    const target = await pickAlive(candidates);
+
+    if (target) {
+      window.location.href = target;
+    } else {
+      // mensaje claro si NI el titular NI los backups responden
+      alert(`No hay ninguna réplica UP para el servicio ${port}.
+Verificá que los .bat estén corriendo, el firewall permita el puerto y /health responda en cada nodo.`);
+    }
+  });
+});
+</script>
