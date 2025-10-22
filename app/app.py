@@ -28,12 +28,10 @@ def create_app():
         "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002",
         "26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002",
     ]
-    # Normalizar/unique y sanity-check
     PEERS = sorted(set(PEERS))
     if len(PEERS) != 9:
         print(f"[WARN] Se esperaban 9 peers, hay {len(PEERS)}: {PEERS}")
 
-    # Si querés distinguirte a vos mismo (no se usa para skipear)
     PUBLIC_HOST = os.getenv("PUBLIC_HOST", "").strip()
     MY_ADDR = f"{PUBLIC_HOST}:{PORT}" if PUBLIC_HOST else None
 
@@ -101,7 +99,6 @@ def create_app():
             fecha TEXT NOT NULL,
             sucursal TEXT NOT NULL
         )""")
-        # Migración opcional: columna updated_at en empleados (no requerida por el merge actual)
         try:
             cur.execute("ALTER TABLE empleados ADD COLUMN updated_at TEXT")
         except Exception:
@@ -120,7 +117,6 @@ def create_app():
         cur.execute("SELECT id, tipo, dni, fecha, sucursal FROM historial ORDER BY fecha DESC, id DESC")
         return [dict(r) for r in cur.fetchall()]
 
-    # última modificación local por DNI (desde historial)
     def _last_ts_map_local():
         cur = _db().cursor()
         cur.execute("""
@@ -130,7 +126,7 @@ def create_app():
         """)
         return {r["dni"]: r["last_ts"] for r in cur.fetchall()}
 
-    # === Merge remoto → local (LWW por DNI usando historial) ===
+    # === Merge remoto → local (LWW) ===
     def _merge_from_snapshot(emp_rem, hist_rem, last_ts_rem):
         merged_emp_inserts = merged_emp_updates = merged_ops = 0
         local_last = _last_ts_map_local()
@@ -143,7 +139,6 @@ def create_app():
         with _db_lock:
             conn = _db(); cur = conn.cursor()
 
-            # empleados
             for dni, e in emp_rem.items():
                 cur.execute("SELECT 1 FROM empleados WHERE dni=?", (dni,))
                 exists = cur.fetchone() is not None
@@ -164,7 +159,6 @@ def create_app():
                         )
                         merged_emp_updates += 1
 
-            # historial (idempotente)
             for op in hist_rem:
                 cur.execute("""SELECT 1 FROM historial
                                WHERE tipo=? AND dni=? AND fecha=? AND sucursal=?""",
@@ -386,14 +380,41 @@ def create_app():
         threading.Thread(target=lambda: sincronizar_con_sucursales([peer]), daemon=True).start()
         return jsonify({"started": True, "peer": peer})
 
-    # === Healthcheck ===
+    # === NUEVO: Sugerencias y fetch por DNI ===
+    @app.get("/empleados/suggest")
+    def empleados_suggest():
+        q = (request.args.get("q") or "").strip()
+        limit = int(request.args.get("limit", "12"))
+        cur = _db().cursor()
+        if not q:
+            cur.execute("SELECT dni, nombre, apellido FROM empleados ORDER BY dni LIMIT ?", (limit,))
+        else:
+            like = f"{q}%"
+            like_any = f"%{q}%"
+            cur.execute("""
+                SELECT dni, nombre, apellido
+                FROM empleados
+                WHERE dni LIKE ? OR nombre LIKE ? OR apellido LIKE ?
+                ORDER BY (dni LIKE ?) DESC, dni
+                LIMIT ?
+            """, (like, like_any, like_any, like, limit))
+        rows = [{"dni": r["dni"], "nombre": r["nombre"], "apellido": r["apellido"]} for r in cur.fetchall()]
+        return jsonify(rows)
+
+    @app.get("/empleado/<dni>")
+    def empleado_by_dni(dni):
+        cur = _db().cursor()
+        cur.execute("SELECT * FROM empleados WHERE dni=?", (dni,))
+        r = cur.fetchone()
+        if not r:
+            return jsonify({"ok": False, "msg": "No existe"}), 404
+        return jsonify({"ok": True, "empleado": _row_to_dict(r)})
+
+    # === Health ===
     @app.get("/health")
     def health():
         resp = make_response(jsonify({
-            "ok": True,
-            "port": PORT,
-            "node": NODE_NAME,
-            "timestamp": time.time(),
+            "ok": True, "port": PORT, "node": NODE_NAME, "timestamp": time.time(),
         }), 200)
         resp.headers["Access-Control-Allow-Origin"] = "*"
         resp.headers["Cache-Control"] = "no-store"
@@ -409,47 +430,31 @@ def create_app():
         historial = [dict(r) for r in cur.fetchall()]
         return render_template("db.html", empleados=empleados, historial=historial)
 
-    # === Estado de peers ===
+    # === Estado de peers (si ya lo usás en otra plantilla, ok) ===
     @app.get("/status")
     def status_page():
         return render_template("status.html")
 
     @app.get("/status/peers")
     def peers_status_json():
-        def label_for(hostport: str) -> str:
-            host, port = hostport.split(":")
-            if host == "26.60.177.15":   return "Sucursal_5000"
-            if host == "26.39.171.184":  return "Sucursal_5001"
-            if host == "26.32.162.255":  return "Sucursal_5002"
-            return f"Sucursal_{port}"
-
         grid = [
             "26.60.177.15:5000", "26.60.177.15:5001", "26.60.177.15:5002",
             "26.39.171.184:5000", "26.39.171.184:5001", "26.39.171.184:5002",
             "26.32.162.255:5000", "26.32.162.255:5001", "26.32.162.255:5002",
         ]
-
         out = []
-        for hostport in grid:
-            peer = hostport
-            lbl = label_for(hostport)
+        for peer in grid:
             try:
                 start = datetime.now()
                 r = requests.get(f"http://{peer}/sync/status", timeout=2)
                 latency = int((datetime.now() - start).total_seconds() * 1000)
                 if r.status_code == 200:
                     data = r.json()
-                    out.append({
-                        "peer": peer, "label": lbl, "up": True,
-                        "latency_ms": latency, "remote_last_sync": data.get("last_sync")
-                    })
+                    out.append({"peer": peer, "up": True, "latency_ms": latency, "remote_last_sync": data.get("last_sync")})
                 else:
-                    out.append({"peer": peer, "label": lbl, "up": False,
-                                "latency_ms": None, "remote_last_sync": None})
+                    out.append({"peer": peer, "up": False, "latency_ms": None})
             except Exception:
-                out.append({"peer": peer, "label": lbl, "up": False,
-                            "latency_ms": None, "remote_last_sync": None})
-
+                out.append({"peer": peer, "up": False, "latency_ms": None})
         return jsonify(out)
 
     # === Logs ===

@@ -17,6 +17,13 @@
   .sticky-actions { display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end; align-items:center; }
   .pill { padding:6px 10px; border-radius:999px; font-size:12px; border:1px solid #c3e6cb; background:#d4edda; color:#155724; }
   .pill.syncing { background:#fff3cd; color:#856404; border-color:#ffeaa7; }
+
+  /* Suave para la lista con botón editar */
+  .empleados .item { background:#fff; border:1px solid #e9ecef; border-radius:12px; padding:12px; margin-bottom:10px; }
+  .empleados .item h4{ margin:0 0 6px 0; font-size:14px; }
+  .empleados .item .muted{ color:#6b7280; font-size:12px; }
+  .empleados .item .tools{ margin-top:8px; display:flex; gap:12px; }
+  .linkbtn{ background:transparent; border:0; color:#0d6efd; cursor:pointer; padding:0; }
 </style>
 {% endblock %}
 
@@ -74,13 +81,13 @@
       </p>
       <form id="form-editar">
         <label>DNI</label>
-        <input type="text" name="dni" placeholder="DNI a editar" required>
+        <input id="edit-dni" type="text" name="dni" placeholder="DNI a editar" required>
         <label>Nuevo Nombre</label>
-        <input type="text" name="nombre" placeholder="Nuevo nombre" required>
+        <input id="edit-nombre" type="text" name="nombre" placeholder="Nuevo nombre" required>
         <label>Nuevo Apellido</label>
-        <input type="text" name="apellido" placeholder="Nuevo apellido" required>
+        <input id="edit-apellido" type="text" name="apellido" placeholder="Nuevo apellido" required>
         <label>Nuevo Puesto</label>
-        <input type="text" name="puesto" placeholder="Nuevo puesto" required>
+        <input id="edit-puesto" type="text" name="puesto" placeholder="Nuevo puesto" required>
         <button type="submit">Guardar cambios</button>
       </form>
       <div id="resultado-editar" class="resultado"></div>
@@ -94,7 +101,8 @@
       </p>
       <form id="form-consultar">
         <label>DNI</label>
-        <input type="text" name="dni" placeholder="DNI a consultar" required>
+        <!-- AUTOCOMPLETE -->
+        <input id="consultar-dni" list="sugerencias-dni" type="text" name="dni" placeholder="DNI a consultar" required>
         <button type="submit">Consultar</button>
       </form>
       <div id="resultado-consulta" class="resultado"></div>
@@ -111,6 +119,9 @@
     <h3>Todos los Empleados</h3>
     <div id="lista-empleados" class="empleados"></div>
   </section>
+
+  <!-- datalist para autocomplete -->
+  <datalist id="sugerencias-dni"></datalist>
 {% endblock %}
 
 {% block scripts %}
@@ -138,9 +149,7 @@
         el.textContent = s.last_sync ? `Última sync: ${s.last_sync}` : 'Nunca sincronizado';
         el.classList.remove('syncing');
       }
-    } catch(err) {
-      // si falla, no rompas la UI
-    }
+    } catch(err) {}
   }
 
   document.getElementById('btn-sync-now').addEventListener('click', async () => {
@@ -148,7 +157,6 @@
     el.textContent = 'Sincronizando…';
     el.classList.add('syncing');
     try { await fetch('/sync/now', {method:'POST'}); } catch(e) {}
-    // 3 polls rápidos para actualizar label
     setTimeout(pollSyncStatus, 1000);
     setTimeout(pollSyncStatus, 2000);
     setTimeout(pollSyncStatus, 3000);
@@ -192,6 +200,25 @@
     }
   });
 
+  // ---- AUTOCOMPLETE para Consultar ----
+  function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); } }
+  async function cargarSugerencias(q){
+    try{
+      const r = await fetch(`/empleados/suggest?q=${encodeURIComponent(q||"")}&limit=12`);
+      const arr = await r.json();
+      const dl = document.getElementById("sugerencias-dni"); dl.innerHTML = "";
+      arr.forEach(p=>{
+        const opt = document.createElement('option');
+        opt.value = p.dni;
+        opt.label = `${p.dni} — ${p.nombre} ${p.apellido}`;
+        dl.appendChild(opt);
+      });
+    }catch(e){}
+  }
+  const onTypeSuggest = debounce(ev => cargarSugerencias(ev.target.value.trim()), 160);
+  document.getElementById("consultar-dni").addEventListener("input", onTypeSuggest);
+  cargarSugerencias(""); // precargar
+
   // ---- HISTORIAL ----
   document.getElementById('btn-ver-historial').addEventListener('click', async ()=>{
     const r = await fetch('/ver_historial'); const data = await r.json();
@@ -211,7 +238,7 @@
     document.getElementById('seccion-empleados').classList.add('hidden');
   });
 
-  // ---- EMPLEADOS ----
+  // ---- EMPLEADOS (con botón ✏️ editar) ----
   document.getElementById('btn-ver-empleados').addEventListener('click', async ()=>{
     const r = await fetch('/obtener_todo'); const data = await r.json();
     const div = document.getElementById('lista-empleados');
@@ -219,22 +246,45 @@
     const empleados = Object.values(data.empleados);
     if (!empleados.length) div.innerHTML += '<p>No hay empleados registrados</p>';
     empleados.forEach(emp=>{
-      const d=document.createElement('div'); d.className='empleado';
+      const d=document.createElement('div'); d.className='item';
       d.innerHTML = `
-        <p><strong>DNI:</strong> ${emp.dni}</p>
+        <h4>DNI: ${emp.dni}</h4>
         <p><strong>Nombre:</strong> ${emp.nombre} ${emp.apellido}</p>
         <p><strong>Puesto:</strong> ${emp.puesto}</p>
-        <p><strong>Sucursal:</strong> ${emp.sucursal}</p><hr>`;
+        <p class="muted"><strong>Sucursal:</strong> ${emp.sucursal}</p>
+        <div class="tools">
+          <button class="linkbtn editar-rapido" data-dni="${emp.dni}">✏️ editar</button>
+        </div>
+        <hr>`;
       div.appendChild(d);
     });
     document.getElementById('seccion-empleados').classList.remove('hidden');
     document.getElementById('seccion-historial').classList.add('hidden');
   });
 
+  // click en ✏️ → precargar formulario Editar
+  document.addEventListener('click', async (ev)=>{
+    const btn = ev.target.closest('.editar-rapido');
+    if(!btn) return;
+    const dni = btn.dataset.dni;
+    try{
+      const r = await fetch(`/empleado/${encodeURIComponent(dni)}`);
+      const j = await r.json();
+      if(!j.ok){ alert("No existe el empleado"); return; }
+      const e = j.empleado;
+      document.getElementById('edit-dni').value = e.dni;
+      document.getElementById('edit-nombre').value = e.nombre;
+      document.getElementById('edit-apellido').value = e.apellido;
+      document.getElementById('edit-puesto').value = e.puesto;
+      // cambiar a la pestaña Editar
+      document.querySelector('.tab[data-target="#panel-editar"]').click();
+      document.getElementById('edit-nombre').focus({preventScroll:true});
+    }catch(err){ console.error(err); alert("Error cargando el empleado"); }
+  });
+
   // Arranque
   window.addEventListener('load', ()=>{
     pollSyncStatus();
-    // refrescar estado cada 30s
     setInterval(pollSyncStatus, 30000);
   });
 </script>
